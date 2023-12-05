@@ -8,6 +8,7 @@ use Livewire\Component;
 use Filament\Forms\Form;
 use Livewire\Attributes\On;
 use App\Models\FormTemplate;
+use App\Models\NRC;
 use App\Models\Quarter;
 use App\Models\Township;
 use Illuminate\Contracts\View\View;
@@ -26,6 +27,8 @@ class CreateForm extends Component implements HasForms
     public $regions;
     public $townships;
     public $quarters;
+    public $nrcs;
+    public $nrc_code;
 
     #[On('create')]
     public function create($message)
@@ -48,6 +51,12 @@ class CreateForm extends Component implements HasForms
         $this->regions = Region::get()->pluck('name', 'id')->toArray();
         $this->townships = Township::get()->pluck('name', 'id')->toArray();
         $this->quarters = Quarter::get()->pluck('name', 'id')->toArray();
+        $this->nrcs = NRC::get()->pluck('name_en', 'id')->toArray();
+        $this->nrc_code = NRC::distinct()->get('nrc_code', 'id')->toArray();
+        // dd($this->nrc_code);
+
+
+
 
     }
 
