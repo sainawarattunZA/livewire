@@ -1,10 +1,12 @@
 <?php 
+
+
 $ok =  json_encode($this->form_template->content);
 
 
 ?>
 <div>
- 
+ {{$this->formInfolist}}
 <input type="hidden" id="hide_me" value="{{$ok}}">
 <input type="number" id="form_id" name="form_id" hidden/>
                 <div id="fb-reader"></div>

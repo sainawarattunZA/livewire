@@ -49,9 +49,12 @@ class ListForms extends Component implements HasForms, HasTable
                 // ...
             ])
             ->actions([
-                Action::make('star')
-            ->icon('heroicon-m-star')
-            ->url(fn (FormTemplate $record): string => route('filament.admin.pages.view-form', ['record' => $record]))
+                Action::make('View')
+            ->icon('heroicon-m-eye')
+            ->url(fn (FormTemplate $record): string => route('filament.admin.pages.view-form', ['record' => $record])),
+            Action::make('edit')
+            ->icon('heroicon-o-pencil')
+            ->url(fn (FormTemplate $record): string => route('filament.admin.pages.edit-form', ['record' => $record]))
            
             ])
             ->bulkActions([

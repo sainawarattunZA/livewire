@@ -11,8 +11,7 @@ class ViewForm extends Page
 
     protected static string $view = 'filament.pages.view-form';
     public static function shouldRegisterNavigation(): bool
-{
-return false ;
-}
-// public $record;
+    {
+        return false;
+    }
 }

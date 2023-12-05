@@ -2,16 +2,19 @@
 
 namespace App\Livewire;
 
-use App\Models\FormTemplate;
 use App\Models\Post;
+use App\Models\Region;
+use Livewire\Component;
+use Filament\Forms\Form;
+use Livewire\Attributes\On;
+use App\Models\FormTemplate;
+use App\Models\Quarter;
+use App\Models\Township;
+use Illuminate\Contracts\View\View;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
-use Livewire\Attributes\On;
 
 
 class CreateForm extends Component implements HasForms
@@ -20,6 +23,9 @@ class CreateForm extends Component implements HasForms
     use InteractsWithForms;
 
     public $content;
+    public $regions;
+    public $townships;
+    public $quarters;
 
     #[On('create')]
     public function create($message)
@@ -39,6 +45,10 @@ class CreateForm extends Component implements HasForms
     public function mount(): void
     {
         $this->form->fill();
+        $this->regions = Region::get()->pluck('name', 'id')->toArray();
+        $this->townships = Township::get()->pluck('name', 'id')->toArray();
+        $this->quarters = Quarter::get()->pluck('name', 'id')->toArray();
+
     }
 
     public function form(Form $form): Form
