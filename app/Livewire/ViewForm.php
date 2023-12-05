@@ -13,7 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Infolists\Concerns\InteractsWithInfolists;
 use Filament\Infolists\Contracts\HasInfolists;
 
- 
+
 
 
 class ViewForm extends Component implements HasForms, HasInfolists
@@ -28,7 +28,7 @@ class ViewForm extends Component implements HasForms, HasInfolists
         $this->record_id = request()->query('record');
         $this->form_template = FormTemplate::find($this->record_id);
 
-        
+
     }
 
 
@@ -38,7 +38,7 @@ class ViewForm extends Component implements HasForms, HasInfolists
         ->record($this->form_template)
         ->schema([
             TextEntry::make('name'),
-                
+
         ]);
 
     }

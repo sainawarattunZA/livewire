@@ -34,13 +34,13 @@
         var town = [];
         var qua = [];
         var nrc = [];
-        var nrc_codes = [];
+
 
         var regions = <?php echo json_encode($regions); ?>;
         var township = <?php echo json_encode($townships); ?>;
         var quarter = <?php echo json_encode($quarters); ?>;
         var nrcs = <?php echo json_encode($nrcs);?>;
-        var nrc_code = <?php echo json_encode($nrc_code);?>;
+
 
         for (const key in regions) {
             reg = [...reg,
@@ -79,15 +79,7 @@
             ]
         }
 
-        for (const key in nrc_code) {
-            nrc_codes = [...nrc_codes,
-                {
-                    label: nrc_code[key],
-                    value: key,
 
-                }
-            ]
-        }
 
         console.log(regions);
         var inputSets = [{
@@ -123,7 +115,78 @@
                         type: 'select',
                         label: 'NRC code',
                         className: 'form-control',
-                        values: nrc_code
+                        values: [{
+                                label: '1/',
+                                value: '1/',
+                                selected: false
+                            },
+                            {
+                                label: '2/',
+                                value: '2/',
+                                selected: false
+                            },
+                            {
+                                label: '3/',
+                                value: '3/',
+                                selected: false
+                            },
+                            {
+                                label: '4/',
+                                value: '4/',
+                                selected: false
+                            },
+                            {
+                                label: '5/',
+                                value: '5/',
+                                selected: false
+                            },
+                            {
+                                label: '6/',
+                                value: '6/',
+                                selected: false
+                            },
+                            {
+                                label: '7/',
+                                value: '7/',
+                                selected: false
+                            },
+                            {
+                                label: '8/',
+                                value: '8/',
+                                selected: false
+                            },
+                            {
+                                label: '9/',
+                                value: '9/',
+                                selected: false
+                            },
+                            {
+                                label: '10/',
+                                value: '10/',
+                                selected: false
+                            },
+                            {
+                                label: '11/',
+                                value: '11/',
+                                selected: false
+                            },
+                            {
+                                label: '12/',
+                                value: '12/',
+                                selected: false
+                            },
+                            {
+                                label: '13/',
+                                value: '13/',
+                                selected: false
+                            },
+                            {
+                                label: '14/',
+                                value: '14/',
+                                selected: false
+                            }
+
+                        ]
                     },
                     {
                         type: 'select',
@@ -154,7 +217,7 @@
                     },
                     {
                         "type": "number",
-                        "label": "Number",
+                        "label": "NRC Number",
                         "className": "form-control",
                         "min": 0,
                         "max": 999999
