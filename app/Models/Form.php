@@ -14,6 +14,13 @@ class Form extends Model
         'content' => 'array',
     ];
 
+    protected $fillable = [
+        'form_id',
+        'form',
+        'created_at',
+        'updated_at',
+    ];
+
     public function form(){
         return $this->belongsTo(FormTemplate::class);
     }

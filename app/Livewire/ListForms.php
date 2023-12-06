@@ -1,29 +1,10 @@
 <?php
 
-// namespace App\Livewire;
-
-// use Livewire\Component;
-
-// class ListForms extends Component
-// {
-//     public function render()
-//     {
-//         return view('livewire.list-forms');
-//     }
-// }
-
-
-
 namespace App\Livewire;
 
 use App\Models\FormTemplate;
 use Filament\Tables\Actions\DeleteAction;
-
 use Filament\Tables\Actions\Action;
-
-
-
-
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Columns\TextColumn;
@@ -52,12 +33,12 @@ class ListForms extends Component implements HasForms, HasTable
             ])
             ->actions([
                 Action::make('View')
-            ->icon('heroicon-m-eye')
-            ->url(fn (FormTemplate $record): string => route('filament.admin.pages.view-form', ['record' => $record])),
-            Action::make('edit')
-            ->icon('heroicon-o-pencil')
-            ->url(fn (FormTemplate $record): string => route('filament.admin.pages.edit-form', ['record' => $record])),
-            DeleteAction::make('delete')
+                    ->icon('heroicon-m-eye')
+                    ->url(fn (FormTemplate $record): string => route('filament.admin.pages.view-form', ['record' => $record])),
+                Action::make('edit')
+                    ->icon('heroicon-o-pencil')
+                    ->url(fn (FormTemplate $record): string => route('filament.admin.pages.edit-form', ['record' => $record])),
+                DeleteAction::make('delete')
 
             ])
             ->bulkActions([
@@ -65,7 +46,8 @@ class ListForms extends Component implements HasForms, HasTable
             ]);
     }
 
-    public function createFormTemplate(){
+    public function createFormTemplate()
+    {
         return redirect()->route('filament.admin.pages.form-builder');
     }
     public function render(): View

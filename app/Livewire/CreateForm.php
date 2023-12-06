@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
 use App\Models\Region;
 use Livewire\Component;
 use Filament\Forms\Form;
@@ -14,7 +13,6 @@ use App\Models\Township;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 
 
@@ -28,14 +26,12 @@ class CreateForm extends Component implements HasForms
     public $townships;
     public $quarters;
     public $nrcs;
-    public $nrc_code;
 
     #[On('create')]
     public function create($message)
     {
         $this->content = json_decode($message);
-        // dd($this->form->getState()['name']);
-        // dd($this->content);
+
         FormTemplate::create([
             'name' => $this->form->getState()['name'],
             'content' => $this->content
@@ -48,16 +44,10 @@ class CreateForm extends Component implements HasForms
     public function mount(): void
     {
         $this->form->fill();
-        $this->regions = Region::get()->pluck('name', 'id')->toArray();
-        $this->townships = Township::get()->pluck('name', 'id')->toArray();
-        $this->quarters = Quarter::get()->pluck('name', 'id')->toArray();
-        $this->nrcs = NRC::get()->pluck('name_en', 'id')->toArray();
-        $this->nrc_code = NRC::distinct()->get('nrc_code', 'id')->toArray();
-        // dd($this->nrc_code);
-
-
-
-
+        // $this->regions = Region::pluck('name', 'id')->toArray();
+        // $this->townships = Township::pluck('name', 'id')->toArray();
+        // $this->quarters = Quarter::pluck('name', 'id')->toArray();
+        // $this->nrcs = NRC::pluck('name_en', 'id')->toArray();
     }
 
     public function form(Form $form): Form

@@ -5,15 +5,12 @@ namespace App\Livewire;
 use App\Models\Form;
 use Livewire\Component;
 use Filament\Tables\Table;
-use App\Models\FormTemplate;
 use Filament\Tables\Actions\Action;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
-
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Tables\Concerns\InteractsWithTable;
-
 class UserForm extends Component implements HasForms, HasTable
 {
     use InteractsWithTable;

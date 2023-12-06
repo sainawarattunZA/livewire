@@ -1,12 +1,12 @@
-
 <?php
-$ok = json_encode($this->form_template->content);
+$data = json_encode($this->form_template->content);
 ?>
 <div>
 
-    <input type="hidden" id="hide_me" value="{{ $ok }}">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" class="form-control" wire:model="name" />
+    <input type="hidden" id="hide_me" value="{{ $data }}">
+    <label for="name" style="font-weight: bold; font-size: 20px">Name :</label>
+    <br>
+    <input type="text" id="name" name="name" class="form-control" wire:model="name" style="margin-bottom: 2rem; border-radius: 5px; margin-top: 0.5rem;"/>
 
 
 
@@ -15,20 +15,17 @@ $ok = json_encode($this->form_template->content);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-<script src="{{ URL::asset('assets/form-builder/form-render.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        let bb = document.getElementById("hide_me");
+        let form = document.getElementById("hide_me");
         var fbEditor = document.getElementById('fb-editor');
 
         var fields = [{
-                label: "Email",
-                type: "text",
-                subtype: "email",
-                icon: "✉"
-            },
-        ];
+            label: "Email",
+            type: "text",
+            subtype: "email",
+            icon: "✉"
+        }, ];
         var reg = [];
         var town = [];
         var qua = [];
@@ -38,7 +35,7 @@ $ok = json_encode($this->form_template->content);
         var regions = <?php echo json_encode($regions); ?>;
         var township = <?php echo json_encode($townships); ?>;
         var quarter = <?php echo json_encode($quarters); ?>;
-        var nrcs = <?php echo json_encode($nrcs);?>;
+        var nrcs = <?php echo json_encode($nrcs); ?>;
 
 
         for (const key in regions) {
@@ -110,6 +107,7 @@ $ok = json_encode($this->form_template->content);
             {
                 label: 'NRC',
                 showHeader: true,
+                icon: "&#9605;",
                 fields: [{
                         type: 'select',
                         label: 'NRC code',
@@ -225,6 +223,7 @@ $ok = json_encode($this->form_template->content);
                 ]
             }
         ];
+
         // Function to initialize the form builder with data
         function initializeFormBuilder(data) {
             $(fbEditor).formBuilder({
@@ -244,9 +243,9 @@ $ok = json_encode($this->form_template->content);
         var fetchDataPromise = new Promise(function(resolve) {
             // Simulate data fetching, replace this with your actual data fetching logic
             setTimeout(function() {
-                var formData = JSON.parse(bb.value);
+                var formData = JSON.parse(form.value);
                 resolve(formData);
-            }, 50); // Adjust the timeout as needed
+            }, 10); // Adjust the timeout as needed
         });
         fetchDataPromise.then(function(data) {
             initializeFormBuilder(data);

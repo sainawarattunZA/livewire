@@ -13,8 +13,6 @@ class UserView extends Component
     {
         $this->record_id = request()->query('record');
         $this->form = Form::find($this->record_id);
-        // dd($this->form);
-
     }
     public function render()
     {
