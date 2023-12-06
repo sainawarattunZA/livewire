@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::get('form', function () {
     return view('FormBuilder.create');
 });
+Route::post('save-form-transaction', [FormsController::class, 'create'])->name('hello');
+

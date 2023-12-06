@@ -13,6 +13,9 @@ class FormTemplate extends Model
         'name',
         'content',
     ];
+    public function forms(){
+        return $this->hasMany(Form::class);
+    }
 
     protected $casts = [
         'content' => 'array',

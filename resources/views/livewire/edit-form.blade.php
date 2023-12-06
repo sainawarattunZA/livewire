@@ -1,8 +1,4 @@
-<style>
-    .addFieldWrap {
-        text-align: center;
-    }
-</style>
+
 <?php
 $ok = json_encode($this->form_template->content);
 ?>
@@ -11,6 +7,7 @@ $ok = json_encode($this->form_template->content);
     <input type="hidden" id="hide_me" value="{{ $ok }}">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" class="form-control" wire:model="name" />
+
 
 
     <div id="fb-editor"></div>
@@ -31,143 +28,203 @@ $ok = json_encode($this->form_template->content);
                 subtype: "email",
                 icon: "✉"
             },
-            {
-                label: "Address",
-                type: "select",
-                subtype: "address",
-                icon: "&#128004;"
-            }
         ];
-        var inputSets= [{
-                    label: 'Address',
-                    name: 'address', // optional - one will be generated from the label if name not supplied
-                    showHeader: true, // optional - Use the label as the header for this set of inputs
-                    icon: "&#x1F3E0",
-                    fields: [{
-                            type: 'select',
-                            label: 'Region',
-                            className: 'form-control',
-                            values: [{
-                                    label: 'Yangon',
-                                    value: 'option-2',
-                                    selected: false
-                                },
-                                {
-                                    label: 'Mandalay',
-                                    value: 'option-3',
-                                    selected: false
-                                }
-                            ]
-                        },
-                        {
-                            type: 'select',
-                            label: 'Township',
-                            className: 'form-control',
-                            values: [{
-                                    label: 'Hlaing',
-                                    value: 'option-2',
-                                    selected: false
-                                },
-                                {
-                                    label: 'Alone',
-                                    value: 'option-3',
-                                    selected: false
-                                }
-                            ]
-                        },
-                        {
-                            type: 'select',
-                            label: 'Quarter',
-                            className: 'form-control',
-                            values: [{
-                                    label: 'Ward 1',
-                                    value: 'option-2',
-                                    selected: false
-                                },
-                                {
-                                    label: 'Ward 2',
-                                    value: 'option-3',
-                                    selected: false
-                                }
-                            ]
-                        },
-                    ]
-                },
+        var reg = [];
+        var town = [];
+        var qua = [];
+        var nrc = [];
+
+
+        var regions = <?php echo json_encode($regions); ?>;
+        var township = <?php echo json_encode($townships); ?>;
+        var quarter = <?php echo json_encode($quarters); ?>;
+        var nrcs = <?php echo json_encode($nrcs);?>;
+
+
+        for (const key in regions) {
+            reg = [...reg,
                 {
-                    label: 'NRC',
-                    showHeader: true,
-                    fields:  [{
-                            type: 'select',
-                            label: 'NRC code',
-                            className: 'form-control',
-                            values: [{
-                                    label: '1/',
-                                    value: 'option-2',
-                                    selected: false
-                                },
-                                {
-                                    label: '6/',
-                                    value: 'option-3',
-                                    selected: false
-                                }
-                            ]
-                        },
-                        {
-                            type: 'select',
-                            label: 'KAKATA',
-                            className: 'form-control',
-                            values: [{
-                                    label: 'YATANA',
-                                    value: 'option-2',
-                                    selected: false
-                                },
-                                {
-                                    label: 'APATA',
-                                    value: 'option-3',
-                                    selected: false
-                                }
-                            ]
-                        },
-                        {
-                            type: 'select',
-                            label: 'National Type',
-                            className: 'form-control',
-                            values: [{
-                                    label: 'N',
-                                    value: 'option-2',
-                                    selected: false
-                                },
-                                {
-                                    label: 'E',
-                                    value: 'option-3',
-                                    selected: false
-                                },
-                                {
-                                    label: 'P',
-                                    value: 'option-3',
-                                    selected: false
-                                }
-                            ]
-                        },
-                        {
-                            type: 'number',
-                            label: 'Number',
-                            className: 'form-control',
-                            "validation": {
-        "min": {
-          "value": 0,
-          "message": "Value must be greater than or equal to 0"
-        },
-        "max": {
-          "value": 999999,
-          "message": "Value must be less than or equal to 999999"
-        }
-      }
-                        },
-                    ]
+                    label: regions[key],
+                    value: key,
+
                 }
             ]
-        ;
+        }
+        for (const key in township) {
+            town = [...town,
+                {
+                    label: township[key],
+                    value: key,
+
+                }
+            ]
+        }
+        for (const key in quarter) {
+            qua = [...qua,
+                {
+                    label: quarter[key],
+                    value: key,
+
+                }
+            ]
+        }
+        for (const key in nrcs) {
+            nrc = [...nrc,
+                {
+                    label: nrcs[key],
+                    value: key,
+
+                }
+            ]
+        }
+
+
+
+        console.log(regions);
+        var inputSets = [{
+                label: 'Address',
+                name: 'address',
+                showHeader: true,
+                icon: "&#x1F3E0",
+                fields: [{
+                        type: 'select',
+                        label: 'Region',
+                        className: 'form-control',
+                        values: reg,
+
+                    },
+                    {
+                        type: 'select',
+                        label: 'Township',
+                        className: 'form-control',
+                        values: town
+                    },
+                    {
+                        type: 'select',
+                        label: 'Quarter',
+                        className: 'form-control',
+                        values: qua
+                    },
+                ]
+            },
+            {
+                label: 'NRC',
+                showHeader: true,
+                fields: [{
+                        type: 'select',
+                        label: 'NRC code',
+                        className: 'form-control',
+                        values: [{
+                                label: '1/',
+                                value: '1/',
+                                selected: false
+                            },
+                            {
+                                label: '2/',
+                                value: '2/',
+                                selected: false
+                            },
+                            {
+                                label: '3/',
+                                value: '3/',
+                                selected: false
+                            },
+                            {
+                                label: '4/',
+                                value: '4/',
+                                selected: false
+                            },
+                            {
+                                label: '5/',
+                                value: '5/',
+                                selected: false
+                            },
+                            {
+                                label: '6/',
+                                value: '6/',
+                                selected: false
+                            },
+                            {
+                                label: '7/',
+                                value: '7/',
+                                selected: false
+                            },
+                            {
+                                label: '8/',
+                                value: '8/',
+                                selected: false
+                            },
+                            {
+                                label: '9/',
+                                value: '9/',
+                                selected: false
+                            },
+                            {
+                                label: '10/',
+                                value: '10/',
+                                selected: false
+                            },
+                            {
+                                label: '11/',
+                                value: '11/',
+                                selected: false
+                            },
+                            {
+                                label: '12/',
+                                value: '12/',
+                                selected: false
+                            },
+                            {
+                                label: '13/',
+                                value: '13/',
+                                selected: false
+                            },
+                            {
+                                label: '14/',
+                                value: '14/',
+                                selected: false
+                            }
+
+                        ]
+                    },
+                    {
+                        type: 'select',
+                        label: 'KAKATA',
+                        className: 'form-control',
+                        values: nrc
+                    },
+                    {
+                        type: 'select',
+                        label: 'National Type',
+                        className: 'form-control',
+                        values: [{
+                                label: 'N',
+                                value: 'option-2',
+                                selected: false
+                            },
+                            {
+                                label: 'E',
+                                value: 'option-3',
+                                selected: false
+                            },
+                            {
+                                label: 'P',
+                                value: 'option-3',
+                                selected: false
+                            }
+                        ]
+                    },
+                    {
+                        "type": "number",
+                        "label": "NRC Number",
+                        "className": "form-control",
+                        "min": 0,
+                        "max": 999999
+
+                    },
+                ]
+            }
+        ];
         // Function to initialize the form builder with data
         function initializeFormBuilder(data) {
             $(fbEditor).formBuilder({
