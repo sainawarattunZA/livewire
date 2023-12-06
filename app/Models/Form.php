@@ -14,7 +14,7 @@ class Form extends Model
         'content' => 'array',
     ];
 
-    public function form_builder(){
+    public function form(){
         return $this->belongsTo(FormTemplate::class);
     }
 
